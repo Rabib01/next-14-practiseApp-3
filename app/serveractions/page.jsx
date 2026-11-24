@@ -1,7 +1,7 @@
-import NewUserForm from "./components/users/NewUserForm";
-import UserList from "./components/users/UserList";
+import NewUserForm from "@/components/NewUserForm";
+import UserList from "@/components/UserList";
 
-export default async function Home() {
+export default async function ServerActions() {
   return (
     <div>
       <h1 className="text-gray-800">USER REGISTRATION</h1>
