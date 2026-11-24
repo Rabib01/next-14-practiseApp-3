@@ -1,6 +1,6 @@
-import getChuckJokes from "@/utils/getJokes";
+import getChuckJokes from "@/utils/getJokesAxios";
 
 export default async function RandJoke() {
   const joke = await getChuckJokes();
-  return <div className="mt-5">{joke.value}</div>;
+  return <div className="mt-5">{joke.data.value}</div>;
 }
