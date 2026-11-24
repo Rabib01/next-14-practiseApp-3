@@ -1,3 +1,4 @@
+import RandJoke from "@/components/RandomJoke";
 import getChuckJokes from "@/utils/getJokes";
 import Image from "next/image";
 
@@ -8,6 +9,9 @@ export default async function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center p-24 gap-5">
       <p className="text-4xl">Hello world! </p>
       <p className="text-4xl">{joke.value}</p>
+      <h3 className="text-3xl">
+        <RandJoke />
+      </h3>
     </div>
   );
 }
