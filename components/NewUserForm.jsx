@@ -1,8 +1,23 @@
 import { addUser } from "@/actions/user";
+import connectMongo from "@/dbConnect/mongoConnect";
+import User from "@/model/user";
 
 export default function NewUserForm() {
   const addUser = async (formData) => {
     "use server";
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const userData = { name, email };
+
+    // ekhon kaaj hocche userData take dataBase e save kora !
+    await connectMongo(); // eita call korle database er prothom connection ta hoilo !
+
+    // insert into dataBase ! - application janena kon collection e data save korbo at this point !
+    await new User(userData).save();
+
+    // nextJs er kaaj khali data take e pathai daoa - all versions have their own way of saving to their respective dbs,
+    // thisis the way how we save things to mongoDb
+
     console.log(formData.get("name"));
     console.log(formData.get("email"));
   };
