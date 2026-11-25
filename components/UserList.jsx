@@ -8,7 +8,7 @@ export default async function UserList() {
       <h2 className="text-gray-800">User List</h2>
 
       {users?.length > 0 ? (
-        <div className="box-2">
+        <div>
           {users.map((user, index) => (
             <p key={user.id}>
               {index + 1}: {user.name} - {user.email}
@@ -16,7 +16,7 @@ export default async function UserList() {
           ))}
         </div>
       ) : (
-        <div className="box-1">No user found!</div>
+        <div>No user found!</div>
       )}
     </div>
   );
