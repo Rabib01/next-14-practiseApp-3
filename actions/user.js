@@ -21,12 +21,18 @@ export const addUser = async (formData) => {
   console.log(formData.get("email"));
 };
 
-export const getUsers = async (formData) => {
-  await connectMongo();
+export const getUsers = async () => {
+  try {
+    await connectMongo();
+    // get users - mongoose theke kono kichu anar jinish gula eikhane korte hobe !
+    const users = await User.find().lean();
+    console.log(users);
+    console.log(users.length);
 
-  // get users - mongoose theke kono kichu anar jinish gula eikhane korte hobe !
-  const users = await User.find();
-  return users;
+    return JSON.parse(JSON.stringify(users));
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // try catch diye wrap o kore rakhte pari - eigula error boundary diye wrap korle oikhane dhorte hobe !
