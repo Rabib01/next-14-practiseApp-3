@@ -147,6 +147,7 @@ export default function NewUserForm() {
                 <div className="relative group">
                   <input
                     id="name"
+                    // this name="the_name" is mandatory when we are using serveractions
                     name="name"
                     type="text"
                     placeholder="Your full name"
