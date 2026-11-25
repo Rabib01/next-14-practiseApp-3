@@ -2,6 +2,7 @@
 
 import connectMongo from "@/dbConnect/mongoConnect";
 import User from "@/model/user";
+import { revalidatePath } from "next/cache";
 
 export const addUser = async (formData) => {
   const name = formData.get("name");
@@ -16,6 +17,11 @@ export const addUser = async (formData) => {
 
   // nextJs er kaaj khali data take e pathai daoa - all versions have their own way of saving to their respective dbs,
   // thisis the way how we save things to mongoDb
+
+  //   revalidate the users data - revalidate korle next js reload korbena but tole tole update kore dibe @! it will reload the data without reloading hte pagef !
+  revalidatePath("/serveractions");
+  //   now the user list is updating as soon as I have pressed submit - sertver action sudhu matro form e use korte hoi ta na - server actions can be used anywhere
+  //  sob kisu koto easily hoye gelo without doing an api request !
 
   console.log(formData.get("name"));
   console.log(formData.get("email"));

@@ -16,7 +16,7 @@ export default async function UserList() {
       {users?.length > 0 ? (
         <div>
           {users.map((user, index) => (
-            <p key={user._id}>
+            <p className="text-2xl text-mauve-950" key={user._id}>
               {index + 1}: {user.name} - {user.email}
             </p>
           ))}
