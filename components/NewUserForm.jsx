@@ -1,4 +1,5 @@
 import { addUser } from "@/actions/user";
+import Button from "./ui/Button";
 
 {
   /**
@@ -28,6 +29,27 @@ import { addUser } from "@/actions/user";
    * this will return a new function
    * we do not have any issues with this keyword here and so I am giving it as null
    * now the new function is addUserWithFlag
+   */
+}
+
+{
+  /**
+   * One other way we could have done this  is that :
+   * after the opening of hte form tag e
+   * <input type="hidden name="flag" value=pro/>
+   * ei khetre amader bind tind er kono jhamela mnai
+   * we could have gooten this again on the serverAction as const flag = formData.get(flag)
+   */
+}
+
+{
+  /**
+   * formState and hooks are a client component stuffs and so wee cannot use them !
+   * s0, do we turn the entire form component into a client component ?
+   * there are a lot of tricks in next js
+   * jototuku jaiga amader client component dorkar sudhu tototuku jaiga ami client component rakhbo
+   * for this case we only are concerned with the submit button only !
+   *
    */
 }
 
@@ -212,17 +234,8 @@ export default function NewUserForm() {
 
             {/* CTA */}
             <div className="relative space-y-5">
-              <button
-                type="submit"
-                className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#00d9e8] via-[#00efa3] to-[#b6ff3b] p-[1px] transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,245,255,0.3)] hover:-translate-y-1 active:translate-y-0"
-              >
-                <span className="relative flex items-center justify-center gap-3 rounded-xl bg-[#0b2420] px-6 py-5 text-sm font-black tracking-[0.2em] text-[#a3ffcb] transition-colors duration-300 group-hover:bg-transparent group-hover:text-[#03120d]">
-                  CREATE IDENTITY
-                  <span className="text-xl transition-transform duration-300 group-hover:translate-x-2">
-                    →
-                  </span>
-                </span>
-              </button>
+              {/* Now this is a fucking client component !  */}
+              <Button />
 
               <div className="flex items-center gap-4">
                 <div className="h-px flex-1 bg-white/10" />
