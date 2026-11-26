@@ -1,6 +1,36 @@
 import { addUser } from "@/actions/user";
 
+{
+  /**
+   * see the LWS playlist on call action and bind - this is on the this keyowrd tutrial
+   * start watching from explicit bind
+   * addUser.nind()
+   * we can explicitly call a function in JS
+   * addUser() -> another way to call this function explicitly is addUser.call()
+   * the advantage of explicitly doing it like this we can tell in the first parameter of .call() what the this keyowrd would be
+   * const sakib = {name:"sakib",age:36}
+   * function getAge(){return this.age}
+   * where would this come from ?
+   * getAge.call(Sakib) - just pointers - sakib does not have a getAge function and we cannot do sakib.getAge
+   * so we do getAge.call(Sakib) - now the this is going to point to sakib
+   * getAge is in the global scope
+   * we can also do this
+   * getAge.call(Sakib, param1) and this param1 will go directly to the function getAge(param1){}
+   * this is what .call()
+   *
+   * another version of call is bind
+   * getAge().bind(sakib); the only different is that this returns and instance of the function and on the previosus example that function was executed instantanusly
+   * when we use bind it will itself return a function
+   * const getAgeWithSakib = getAge().bind(sakib)
+   * now we can do getAgeWithSakib()
+   */
+}
+
 export default function NewUserForm() {
+  // modifying the action here - parameter ala function bananor jonno amra ei kaaj ta kortesi !
+
+  const addUserWithFlag = addUser.bind();
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030b0c] text-white flex items-center justify-center px-5 py-20">
       {/* ATMOSPHERIC BACKGROUND */}
