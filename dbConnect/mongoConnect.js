@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
 
 const MONGO_URI = process.env.MONGO_URI;
-const cached = {};
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = {
+    connection: null,
+    promise: null,
+  };
+}
 
 async function connectMongo() {
   if (!MONGO_URI) {

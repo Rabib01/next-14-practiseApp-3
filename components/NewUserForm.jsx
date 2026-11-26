@@ -23,13 +23,18 @@ import { addUser } from "@/actions/user";
    * when we use bind it will itself return a function
    * const getAgeWithSakib = getAge().bind(sakib)
    * now we can do getAgeWithSakib()
+   *
+   * const addUserWithFlag = addUser.bind();
+   * this will return a new function
+   * we do not have any issues with this keyword here and so I am giving it as null
+   * now the new function is addUserWithFlag
    */
 }
 
 export default function NewUserForm() {
   // modifying the action here - parameter ala function bananor jonno amra ei kaaj ta kortesi !
 
-  const addUserWithFlag = addUser.bind();
+  const addUserWithFlag = addUser.bind(null, "pro");
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030b0c] text-white flex items-center justify-center px-5 py-20">
@@ -111,7 +116,7 @@ export default function NewUserForm() {
 
           {/* Inner panel */}
           <form
-            action={addUser}
+            action={addUserWithFlag}
             className="relative m-[2px] rounded-[30px] bg-[#071415] p-8 sm:p-11 space-y-9 overflow-hidden"
           >
             {/* Inner ambient light */}

@@ -2,17 +2,21 @@
 
 import connectMongo from "@/dbConnect/mongoConnect";
 import User from "@/model/user";
+import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
 
 // now we want to bring an additional argument here ! h0w ? hypothethical example - addUser er sathe wwe are trying to send a flag in the argument that the user has a status of being a pro user !
 // we modify the addUser action in the form
-export const addUser = async (formData) => {
+export const addUser = async (flag, formData) => {
   const name = formData.get("name");
   const email = formData.get("email");
   const userData = { name, email };
 
   // ekhon kaaj hocche userData take dataBase e save kora !
   await connectMongo(); // eita call korle database er prothom connection ta hoilo !
+
+  // this one is for debugging purposes
+  console.log("MongoDB connection state:", mongoose.connection.readyState);
 
   // insert into dataBase ! - application janena kon collection e data save korbo at this point !
   await new User(userData).save();
@@ -27,6 +31,7 @@ export const addUser = async (formData) => {
 
   console.log(formData.get("name"));
   console.log(formData.get("email"));
+  console.log(flag);
 };
 
 export const getUsers = async () => {
