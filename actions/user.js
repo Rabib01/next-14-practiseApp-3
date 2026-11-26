@@ -4,6 +4,8 @@ import connectMongo from "@/dbConnect/mongoConnect";
 import User from "@/model/user";
 import { revalidatePath } from "next/cache";
 
+// now we want to bring an additional argument here ! h0w ? hypothethical example - addUser er sathe wwe are trying to send a flag in the argument that the user has a status of being a pro user !
+// we modify the addUser action in the form
 export const addUser = async (formData) => {
   const name = formData.get("name");
   const email = formData.get("email");
