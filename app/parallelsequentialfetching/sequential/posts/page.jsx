@@ -13,7 +13,9 @@ export default async function PostsPage() {
           {posts?.length > 0 ? (
             posts.map((post) => (
               <li className="mb-5" key={post.id}>
-                <Link href={`/sequential/posts/${post.id}`}>
+                <Link
+                  href={`/parallelsequentialfetching/sequential/posts/${post.id}`}
+                >
                   {post.id}. {post.title}
                 </Link>
               </li>

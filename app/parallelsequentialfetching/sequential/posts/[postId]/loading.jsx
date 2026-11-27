@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <div className="loading">Loading single post...</div>;
+  return <div className="box loading">Loading single post...</div>;
 }
