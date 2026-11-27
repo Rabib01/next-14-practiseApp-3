@@ -2,6 +2,7 @@
 
 import connectMongo from "@/dbConnect/mongoConnect";
 import User from "@/model/user";
+import wait from "@/utils/wait";
 import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
 
@@ -14,6 +15,13 @@ export const addUser = async (flag, formData) => {
 
   // ekhon kaaj hocche userData take dataBase e save kora !
   await connectMongo(); // eita call korle database er prothom connection ta hoilo !
+
+  // add delay - this allows us to see the submitting status of the form - at this point all of the rest of the form is a client component, only this button is a client  component !
+  //  this button for submitting can be used in any other form or in nested components !
+  //  amra specific text field o client component banaite pari, for valiation purposes  !
+  // revalidate - only when new posts would be added - otherwise tumi baba cached e thako !
+
+  await wait(3000);
 
   // this one is for debugging purposes
   console.log("MongoDB connection state:", mongoose.connection.readyState);
