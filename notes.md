@@ -21,4 +21,6 @@ streaming
 
 parallel and sequential data fetching
 
--
+- tinta request soman vabe suru hoise - soman vabe jave
+- sequential - tinta request soman vabe jabe
+- rest I need tp code and take the notes
