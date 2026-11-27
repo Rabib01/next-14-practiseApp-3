@@ -61,3 +61,79 @@ if we can't do this parallely - we try to do things sequentially !
 ### disadvantage of sequentia
 
 waterfall
+
+# Caching
+
+### How the caching mechanism work ?
+
+- stores the output at a page dunamically !
+- reduces computation costs
+- stores response of requests
+- nextjs mantains 4 caches - request memoization, data cache, full route cache, router cache!
+  - request memoization : fetch er request er return value memoize kore rakha
+  - only the last one happens in the client
+  - this si how a nextjs application should loook like
+    - root as server - branches as server - only the leaves could or could not be client component
+    - form as server - form button as client - do not turn the entire form as a client component
+    - sob kisu srver e takbe, last er khali button ta client component thakbe !
+    - Hypothetically : 1 - : Request memoization
+      - form has a parent that has done a fetch request on fetch/post
+      - done the same request at another cousin branch
+      - the first fetch would get reused - react tree render pass e - oitar response cousing branch e reuse hocche
+      - this thing is known as request memoization - also known as request deduplication
+      - duration - per request life cycle -
+    - Data cache :
+      - fetch res er result ei cache e thake
+      - this lives in a different cache - this is persistent - cached inside of the .next folder
+    - Full router cache :
+      - can be revalidated
+      - HTML and RSC (REact server component payload) -
+      - dynamic pages - this is built on request time
+      - when we go to a single post by clicking in our case
+      - react innovation - page ashbe - oi page er ja ja jinish dorkar - oita server e render kore niye ashe - these are server components
+      - server e pc te oi component ta render kore - render er output ei type er payload akare pathiye dei
+      - this this goes to client, this payload is not html - client er react library and next js library
+      - nexstjs can parse this payload and show the relevant html on the page
+      - this comes in blocks - not all at once - a lot like fetch reqeusts from hte server
+      - this is coming on request as they asre dynamic pages
+      - almost like JSON - parsed into html
+      - whenever we hit a route - nextjs knows that for which route the rsc payload is what !
+      - this rsc paload is also kept in a different cache
+      - this is what the full router cache is
+      - is also revalidated and persistenet
+    - Router Cache :
+      - this is on the client side
+      - also RSC payload
+      - server close kore daoar poreo jinish gula kaaj kore - on different routes
+      - so there is an in mmeory cache in the client side
+      - this is router cache
+      - it's lifetime is upto user session or time-based - reload or browser close korle ar paoa jabe na !
+      - router cache pea gele are request korei na
+  - react server and client component reconciliation !
+    - server component - purely done one the server - no apis or user interaction - just pure rendering
+    - first request always goes to the server
+    - first rooot page and layout gets rendered - creates the html with rsc payload
+    - now it goes to two of its server children - one has fetching which is also done on the server side
+    - when it sees a client component it puts an empty placeholder box there
+    - when all of the server components are rendered - gives control to browse
+    - before - browser has react library and everything that was once done on the client side - like next js utilities
+    - on client component react reconsiles
+    - placeholder er faka code gula client e load hoi
+    - ager rsc gulo na
+    - pdf generation - purely server side - heavy task done on a server component - output gets translated to html
+      - if we had used on raw react - or client componetn - all of this pdf processing would have been done by the clients or browser
+      - this pdf generatio would have been done on the browser
+      - browser would have to download this pdf library
+      - as this is a server c omponent - this would have worked on the server
+    - the generated html would trickle down- but the library would not as it is a server compoent
+    - Pure react - everything would have had to done on the browser
+      - where does it reconciles -
+      - onclick handler that is in the browser - only on those places
+      - but this also has an rsc payload
+      - modular identifier kore
+      - source code dekhe browser e kaaj kore chole jai - what ?
+  - This is how server and client component works
+  - pure server side SSR - wksathe generate hoye diye dei
+  - this also gets streamed btw
+  - eitarr karone sob dhoroner performacne improve hoi! THIS IS PART OF HOW IT HELPS SEO
+  -
